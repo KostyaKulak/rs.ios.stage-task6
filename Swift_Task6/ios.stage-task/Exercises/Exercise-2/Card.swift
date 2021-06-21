@@ -1,9 +1,9 @@
 import Foundation
 
 protocol CardBaseCompatible: Hashable, Codable {
-    var suit: Suit {get}
-    var value: Value {get}
-    var isTrump: Bool {get}
+    var suit: Suit { get }
+    var value: Value { get }
+    var isTrump: Bool { get }
 
     func hash(into hasher: inout Hasher)
 }
@@ -36,18 +36,18 @@ struct Card: CardBaseCompatible {
 
     }
 
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return false
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        (lhs.suit == rhs.suit) && (lhs.value == rhs.value)
     }
 }
 
 extension Card {
 
     func checkIfCanBeat(card: Card) -> Bool {
-        return false
+        suit == card.suit ? value.rawValue > card.value.rawValue : isTrump
     }
 
     func checkValue(card: Card) -> Bool {
-        return false
+        false
     }
 }
